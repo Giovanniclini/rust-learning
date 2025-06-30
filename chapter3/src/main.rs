@@ -6,6 +6,7 @@ fn main() {
     operations();
     booleans_values();
     tuples_and_arrays();
+    char_literals();
     panick_index();
 
     // Functions
@@ -20,6 +21,16 @@ fn main() {
     while_example();
     for_example();
 
+}
+
+fn char_literals() {
+    // char literals are 4 bytes in size and can represent a single Unicode scalar value.
+    // They are written with single quotes, like 'a', 'b', 'c', etc.
+    // They differ from strings, which are sequences of characters and are written with double quotes, like "hello", "world", etc.
+
+    let c = 'z';
+    let z: char = 'ℤ'; // with explicit type annotation
+    let heart_eyed_cat = '😻';
 }
 
 fn while_example() {
