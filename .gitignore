@@ -1,0 +1,47 @@
+# Rust build output
+/target/
+
+# Cargo package files
+**/*.rs.bk
+**/*.rs~
+
+# Binaries and libraries
+*.exe
+*.dll
+*.so
+*.dylib
+*.rlib
+
+# IDEs and editors
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (CLion, IntelliJ, etc.)
+.idea/
+
+# Emacs
+*~
+
+# Vim
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# Logs and temporary files
+*.log
+
+# Byebug / debugging artifacts
+*.lldb
+*.gdb
+
+# Coverage and test reports
+/coverage/
+htmlcov/
+*.lcov
+*.profraw
+
+# Misc
+Cargo.lock  # include only for binaries, exclude for libraries
