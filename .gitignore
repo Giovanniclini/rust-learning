@@ -1,7 +1,7 @@
-# Rust build output
-/target/
+# Ignore all target/ directories recursively
+**/target/
 
-# Cargo package files
+# Ignore build artifacts
 **/*.rs.bk
 **/*.rs~
 
@@ -12,36 +12,26 @@
 *.dylib
 *.rlib
 
-# IDEs and editors
-# VSCode
+# IDEs and Editors
 .vscode/
 *.code-workspace
-
-# JetBrains (CLion, IntelliJ, etc.)
 .idea/
-
-# Emacs
-*~
-
-# Vim
 *.swp
 *.swo
+*~
 
-# MacOS
+# macOS
 .DS_Store
 
-# Logs and temporary files
+# Logs
 *.log
 
-# Byebug / debugging artifacts
-*.lldb
-*.gdb
-
-# Coverage and test reports
+# Coverage
 /coverage/
 htmlcov/
 *.lcov
 *.profraw
 
-# Misc
-Cargo.lock  # include only for binaries, exclude for libraries
+# Cargo.lock handling
+# Uncomment the next line ONLY if this is a library crate
+# Cargo.lock
