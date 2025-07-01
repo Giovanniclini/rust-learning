@@ -16,6 +16,99 @@ fn main() {
     ownership_and_functions_with_return();
 
     // References and Borrowing
+    reference_example();
+    dangling_references();
+    // To sum up:
+    // 1. At any given time, you can have either one mutable reference or any number of immutable references.
+    // 2. References must always be valid.
+}
+
+fn dangling_references() {
+    // Dangling references are references that point to a memory location that has been freed.
+    // In Rust the compiler guarantees that references will never be dangling references. 
+    let reference_to_nothing = solution_to_dangle();
+}
+
+//fn dangle() -> &String {
+//    // The function returns a reference to a string that is created inside the function.
+//    // When the function ends the string goes out of scope and is dropped.
+//    // 
+//    let s = String::from("hello");
+//    &s // This line will cause an error because s is dropped at the end of the function
+//}
+
+fn solution_to_dangle() -> String {
+    let s: String = String::from("hello");
+    s
+}
+
+fn reference_example() {
+    // To avoid returning the value of s1 to the function caller
+    // We can use references.
+    // References allow you to refer to some value without taking ownership of it.
+    // The reference is pointing the pointer to the value in memory,
+    // so the value is not moved, but borrowed.
+    // Because the reference does not own it, the value it points to will not be dropped when the reference stops being used.
+    // NB: References are immutable by default, meaning you cannot change the value they point to.
+
+    let s1 = String::from("hello");
+
+    let len = calculate_length(&s1);
+
+    println!("The length of '{s1}' is {len}.");
+
+    // Mutable references
+
+    // The string must be mutable in order to have the reference mutable.
+    let mut s = String::from("hello");
+
+    // Then we create a mutable reference with &mut.
+    change(&mut s);
+
+    // NB: Mutable references have one big restriction: if you have a mutable reference to a value, you can have no other references to that value. 
+    // -> error[E0499]: cannot borrow `s` as mutable more than once at a time
+    // This restriction prevents DATA RACES!
+    // Data races occur when these three conditions are met:
+    // 1. Two or more pointers access the same data at the same time.
+    // 2. At least one of the pointers is a mutable reference.
+    // 3. There's no mechanism being used to synchronize access to the data.
+    // Rust solves data races by refusing to compile code with data races.
+    // Data races cause undefined behaviour and can be difficult to diagnose.
+
+    // Rust enforces a similar rule for combining mutable and immutable references.
+    // -> error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable
+
+    let mut s = String::from("hello");
+
+    // We can define two only-read references
+    let r1 = &s; // no problem
+    let r2 = &s; // no problem
+    // But it is a problem if we simultaneously try to create a mutable reference.
+    // let r3 = &mut s; // The line generates the error[E0502]
+
+    // NB: Reference scope starts from where it is introduced and continues through the last
+    // time it is used... for example:
+
+    let mut s = String::from("hello");
+
+    let r1 = &s; // no problem
+    let r2 = &s; // no problem
+    println!("{r1} and {r2}");
+    // Variables r1 and r2 will not be used after this point.
+
+    let r3 = &mut s; // no problem
+    println!("{r3}");
+}
+
+
+// To have mutable references we have to specify the mutable reference in the type accepted by the function.
+fn change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
+
+fn calculate_length(s: &String) -> usize {
+    // Here we cannot change the value of s, because it is a reference.
+    s.len()
 }
 
 fn ownership_and_functions_with_return() {
