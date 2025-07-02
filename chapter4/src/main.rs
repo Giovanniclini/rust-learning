@@ -21,6 +21,73 @@ fn main() {
     // To sum up:
     // 1. At any given time, you can have either one mutable reference or any number of immutable references.
     // 2. References must always be valid.
+    slice_type();
+    slice_example();
+    string_literals();
+    other_kind_of_slices();
+}
+
+fn other_kind_of_slices() {
+    let a = [1, 2, 3, 4, 5];
+
+    let slice = &a[1..3];
+
+    assert_eq!(slice, &[2, 3]);
+}
+
+fn slice_example() {
+    let mut s = String::from("hello world");
+
+    let word = first_word(&s); // word will get the value 5
+
+    // At this point word lost the meaning while being still valid. 
+    // In this case the compiler compiles without problems. 
+    // This is an error prone behaviour and can be fixed with slices!
+    
+    let sliced_word = first_word_slice(&s);
+
+    // s.clear(); // error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable. In order to clear s we need to borrow it as mutable.
+
+    println!("The first word is: {}", sliced_word);
+}
+
+fn first_word_slice(s: &str) -> &str {
+
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i]; // return a slice of the string up to the first space
+        }
+    }
+
+    &s[..] // if no space is found, return the whole string as a slice
+    
+}
+
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+fn slice_type() {
+    // Internally, the slice data structure stores:
+    // 1. A pointer to the data.
+    // 2. The length of the slice.
+    
+    let s = String::from("hello world");
+
+    let hello = &s[..5]; // this is equals to // let hello = &s[0..5];
+    let world = &s[6..11];
+    let hello_world = &s[..]; // this is equals to // let hello_world = &s[0..11];
+    println!("{} {} {}", hello, world, hello_world);
 }
 
 fn dangling_references() {
@@ -256,10 +323,16 @@ fn variable_scope() {
 fn string_literals() {
     // Strings can be mutated but literals cannot.
     // The difference is how these two types deal with memory.
-    // Strings can change in size and are stored in the heap,
-    // while string literals are fixed in size and stored in the stack.
+    // Strings can change in size and are stored in the heap.
 
+    // We are creating a String type from a string literal ("hello").
     let mut s = String::from("hello"); // s is a mutable String
     s.push_str(", world!"); // push_str() appends a literal to a String
     println!("{}", s); // This will print "hello, world!"
+
+    // String literals are stored inside the binary (the executable file) and they are string slices by nature.
+    // For this reason, thery are immutable and have fixed size.
+    // They differ from `String` type, which is a growable, heap-allocated data structure.
+    // They also differ from char type, which represents a single Unicode scalar value.
+    let s: &str = "Hello, world!";
 }
