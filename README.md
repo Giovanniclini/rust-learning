@@ -34,7 +34,7 @@ By the end of this plan, I aim to:
 ### Week 1: Fundamentals of Rust
 
 **Topics:**
-- Ownership, Borrowing, Lifetimes
+- Ownership, Borrowing
 - Variables, Control Flow
 - Functions, Modules, `match`, `if let`
 
@@ -51,7 +51,7 @@ By the end of this plan, I aim to:
 ### Week 2: Structs, Enums & Error Handling
 
 **Topics:**
-- Structs, Enums, Pattern Matching
+- Structs, Enums, Pattern Matching, Lifetimes
 - Vectors, Strings, HashMaps
 - Error handling with `Result` and `Option`
 
@@ -79,6 +79,7 @@ By the end of this plan, I aim to:
 - Rust by Example
 
 **Tasks:**
+- Commit daily notes and solutions
 - Polish and document the Todo CLI
 - Add tests and logging
 - ✅ Push to GitHub: `todo-cli-rust`
@@ -97,6 +98,7 @@ By the end of this plan, I aim to:
 - [Zero to Production in Rust](https://www.zero2prod.com/) – Ch. 1–4
 
 **Tasks:**
+- Commit daily notes and solutions
 - Choose a web API project:
   - Pastebin clone
   - Bookmark manager
