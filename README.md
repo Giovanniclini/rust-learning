@@ -40,7 +40,7 @@ By the end of this plan, I aim to:
 
 **Resources:**
 - 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6
-- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Exercises 1–4
+- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1–4
 
 **Tasks:**
 - Set up this repo (`rust-learning`)
@@ -57,7 +57,7 @@ By the end of this plan, I aim to:
 
 **Resources:**
 - Rust Book Chapters 7–10
-- Rustlings: Exercises 5–8
+- Rustlings: Chapters 5–8
 
 **Project:**
 #### ✅ Mini Project 1: Todo CLI App
