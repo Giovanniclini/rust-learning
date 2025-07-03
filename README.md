@@ -40,7 +40,7 @@ By the end of this plan, I aim to:
 
 **Resources:**
 - 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6
-- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1,2,3,4,6,7 and Quiz 1
+- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1,2,3,4,5,6,7 and Quiz 1
 
 **Tasks:**
 - Set up this repo (`rust-learning`)
