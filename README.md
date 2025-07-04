@@ -35,12 +35,13 @@ By the end of this plan, I aim to:
 
 **Topics:**
 - Ownership, Borrowing
-- Variables, Control Flow
-- Functions, Modules, `match`, `if let`
+- Variables, Functions, Control Flow
+- Structs, Enums, Pattern Matching
+- Vectors
 
 **Resources:**
-- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6
-- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1,2,3,4,5,6,7 and Quiz 1
+- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–7, 8.1, 19.1
+- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1,2,3,4,5,6,7,8 and Quiz 1
 
 **Tasks:**
 - Set up this repo (`rust-learning`)
@@ -51,8 +52,8 @@ By the end of this plan, I aim to:
 ### Week 2: Structs, Enums & Error Handling
 
 **Topics:**
-- Structs, Enums, Pattern Matching, Lifetimes
-- Vectors, Strings, HashMaps
+- Lifetimes
+- Strings, HashMaps
 - Error handling with `Result` and `Option`
 
 **Resources:**
