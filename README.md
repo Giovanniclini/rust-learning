@@ -40,7 +40,7 @@ By the end of this plan, I aim to:
 - Vectors
 
 **Resources:**
-- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–7, 8.1, 19.1
+- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6, 8.1, 19.1
 - 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1,2,3,4,5,6,7,8 and Quiz 1
 
 **Tasks:**
