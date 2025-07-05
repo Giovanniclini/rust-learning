@@ -55,10 +55,15 @@ By the end of this plan, I aim to:
 - Trait & Lifetimes
 - Strings, HashMaps
 - Error handling with `Result` and `Option`
+- Automated Test
 
 **Resources:**
-- Rust Book Chapters 7–10
-- Rustlings: Chapters 5–8
+- Rust Book Chapters 7–11
+- Rustlings: Chapters 9-17
+
+**Tasks:**
+- Commit daily notes and solutions
+- Mini Project 1
 
 **Project:**
 #### ✅ Mini Project 1: Todo CLI App
