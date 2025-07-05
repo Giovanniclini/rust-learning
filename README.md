@@ -63,7 +63,7 @@ By the end of this plan, I aim to:
 
 **Tasks:**
 - Commit daily notes and solutions
-- Mini Project 1
+- Initialize Mini Project 1
 
 **Project:**
 #### ✅ Mini Project 1: Todo CLI App
