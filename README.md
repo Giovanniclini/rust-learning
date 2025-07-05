@@ -9,7 +9,7 @@ Welcome to my Rust learning journey! This repo documents my progress through a 6
 | Week         | Status         |
 |--------------|----------------|
 | 🔵 Week 1     | Fundamentals   |
-| ⬜ Week 2     | Structs & Enums |
+| ⬜ Week 2     | Common Collections, Lifetimes and Error Handling |
 | ⬜ Week 3     | Polish CLI     |
 | ⬜ Week 4     | Web & Async    |
 | ⬜ Week 5     | Web API Dev    |
@@ -49,7 +49,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 2: Structs, Enums & Error Handling
+### Week 2: Common Collections, Lifetimes & Error Handling
 
 **Topics:**
 - Lifetimes
