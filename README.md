@@ -49,7 +49,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 2: Common Collections, Lifetimes & Error Handling
+### Week 2: Beginner Rust
 
 **Topics:**
 - Trait & Lifetimes
