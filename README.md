@@ -9,7 +9,7 @@ Welcome to my Rust learning journey! This repo documents my progress through a 6
 | Week         | Status         |
 |--------------|----------------|
 | 🔵 Week 1     | Fundamentals   |
-| ⬜ Week 2     | Common Collections, Lifetimes and Error Handling |
+| ⬜ Week 2     | Beginner Rust |
 | ⬜ Week 3     | Polish CLI     |
 | ⬜ Week 4     | Web & Async    |
 | ⬜ Week 5     | Web API Dev    |
