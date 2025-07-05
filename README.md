@@ -52,7 +52,7 @@ By the end of this plan, I aim to:
 ### Week 2: Common Collections, Lifetimes & Error Handling
 
 **Topics:**
-- Lifetimes
+- Trait & Lifetimes
 - Strings, HashMaps
 - Error handling with `Result` and `Option`
 
