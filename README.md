@@ -40,8 +40,8 @@ By the end of this plan, I aim to:
 - Vectors
 
 **Resources:**
-- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6, 8.1, 19.3
-- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1-8 and Quiz 1
+- 📘 [The Rust Book](https://doc.rust-lang.org/book/) – Chapters 1–6, 8.1
+- 🧪 [Rustlings](https://github.com/rust-lang/rustlings) – Chapters 1-8, Quiz 1
 
 **Tasks:**
 - Set up this repo (`rust-learning`)
