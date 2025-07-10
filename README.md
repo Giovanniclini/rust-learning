@@ -58,22 +58,15 @@ By the end of this plan, I aim to:
 - Automated Test
 
 **Resources:**
-- Rust Book Chapters 7–11
+- Rust Book Chapters 7,8.2,8.3,9–11
 - Rustlings: Chapters 9-17
 
 **Tasks:**
 - Commit daily notes and solutions
-- Initialize Mini Project 1
-
-**Project:**
-#### ✅ Mini Project 1: Todo CLI App
-- Features: Add/remove/list tasks
-- Store tasks in a JSON file
-- Crates: `clap`, `serde`, `serde_json`
 
 ---
 
-### Week 3: Ownership in Practice + Project Polish
+### Week 3: Midterm Project
 
 **Topics:**
 - Iterators, Closures
@@ -84,9 +77,15 @@ By the end of this plan, I aim to:
 - Rust Book Chapters 11–13
 - Rust by Example
 
+**Project:**
+#### ✅ Mini Project 1: Todo CLI App
+- Features: Add/remove/list tasks
+- Store tasks in a JSON file
+- Crates: `clap`, `serde`, `serde_json`
+
 **Tasks:**
 - Commit daily notes and solutions
-- Polish and document the Todo CLI
+- Start the project Todo CLI App
 - Add tests and logging
 - ✅ Push to GitHub: `todo-cli-rust`
 
