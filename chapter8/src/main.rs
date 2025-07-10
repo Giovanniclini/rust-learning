@@ -10,7 +10,7 @@ fn main() {
     let v: Vec<i32> = Vec::new();
 
     // The macro vec! will create a new vector that holds the values you give it
-    let v = vec![1,2,3]
+    let v = vec![1,2,3];
 
     // Adding elements to the vector
     let mut v = Vec::new();
