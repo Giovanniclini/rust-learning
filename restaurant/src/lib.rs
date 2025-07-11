@@ -210,7 +210,7 @@ fn function2() -> IoResult<()> {
 // rand = "0.8.5"
 // Then we can use it in our code like this:
 // use rand::Rng;
-// For the standard library,known also as prelude, we do not need to add it to Cargo.toml.
+// For the standard library, we do not need to add it to Cargo.toml.
 // We just need to use it in our code.
 // use std::collections::HashMap;
 
