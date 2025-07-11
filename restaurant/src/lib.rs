@@ -246,6 +246,7 @@ use std::collections::*;
 // For example, if we want to define a submodule named vegetables in the garden module,
 // we can use the following code in src/garden.rs:
 // mod vegetables;
+// Just put in the other file the code you would have put in the curly brackets.
 // The compiler will look for the submodule’s code in these places:
 // - Inline, directly following `mod vegetables`, within curly brackets instead of the semicolon
 // - In the file src/garden/vegetables.rs
