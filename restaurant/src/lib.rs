@@ -155,3 +155,100 @@ pub fn eat_at_restaurant_struct_enum() {
     let order1 = back_of_house::Appetizer::Soup;
     let order2 = back_of_house::Appetizer::Salad;
 }
+
+// We can also use the keyword 'use' to bring paths into scope.
+// It is like a shortcut for the full path.
+
+use crate::front_of_house::hosting;
+
+// Furthermore, with re-exporting we can make items available at a higher level in the module tree.
+// External users of our library can use the re-exported items without needing to know the full path.
+pub use crate::front_of_house::hosting;
+// Without 'pub use' external code wouldve needed to use the full path to access the hosting module.
+// and also front_of_the_house would have been required to be declared as pub.
+// Like this we have re-exported the hosting module, so from an external crate,
+// it would be accessible with
+// restaurant::hosting::add_to_waitlist();
+// Re-exporting is useful when the internal structure of your code is different from how programmers calling your code would think about the domain. 
+
+pub fn eat_at_restaurant_use_keyword() {
+    hosting::add_to_waitlist();
+}
+
+// hosting will not be accessible if outside the particular scope it is defined.
+// The following code will generate an error:
+//mod customer {
+//    pub fn eat_at_restaurant() {
+//        hosting::add_to_waitlist();
+//    }
+//}
+
+// Note that we coud've also bring into scope only the function we needed:
+// use crate::front_of_house::hosting::add_to_waitlist;
+// This would have the same effect as the previous example, but it would not IDIOMATIC.
+// Specifying the parent module when calling the function makes it clear 
+// that the function isn’t locally defined while still minimizing repetition of the full path.
+// On the other hand, struct and enums are brought into scope with the full path. 
+
+// We can also use the keyword 'as' to rename items when bringing them into scope if we find in the situation 
+// where we have two items with the same name in scope.
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -> Result {
+    // --snip--
+}
+
+fn function2() -> IoResult<()> {
+    // --snip--
+}
+
+// External packages
+// To use external packages we need to add them to the Cargo.toml file and to import them in the code.
+// For example, to use the rand crate, we add the following line to Cargo.toml:
+// [dependencies]
+// rand = "0.8.5"
+// Then we can use it in our code like this:
+// use rand::Rng;
+// For the standard library,known also as prelude, we do not need to add it to Cargo.toml.
+// We just need to use it in our code.
+// use std::collections::HashMap;
+
+// Nested Paths
+// We can use nested paths to bring multiple items into scope from the same module.
+// This:
+// --snip--
+use std::cmp::Ordering;
+use std::io;
+// --snip--
+// Can be written as this:
+// --snip--
+use std::{cmp::Ordering, io};
+// --snip--
+// Or even this:
+use std::io;
+use std::io::Write;
+// Into:
+use std::io::{self, Write};
+
+// The Glob operator
+// If we want to bring all public items from a module into scope, we can use the glob operator *.
+use std::collections::*;
+// This use statement brings all public items defined in std::collections into the current scope. 
+
+// To defines modules in different files 
+// we can use the mod keyword in the crate root file (src/lib.rs or src/main.rs)
+// The compiler will look for the module’s code in these places:
+// - Inline, within curly brackets that replace the semicolon following `mod module_name`
+// - In the file src/module_name.rs
+// - In the file src/module_name/mod.rs
+// If we want to define a submodule, we can use the same approach.
+// For example, if we want to define a submodule named vegetables in the garden module,
+// we can use the following code in src/garden.rs:
+// mod vegetables;
+// The compiler will look for the submodule’s code in these places:
+// - Inline, directly following `mod vegetables`, within curly brackets instead of the semicolon
+// - In the file src/garden/vegetables.rs
+// - In the file src/garden/vegetables/mod.rs
+// This way we can organize our code in a modular way, making it easier to read and maintain.
+// The mod approach is the old way of organizing code in Rust.
