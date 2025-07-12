@@ -10,7 +10,7 @@ Welcome to my Rust learning journey! This repo documents my progress through a 6
 |--------------|----------------|
 | ✅ Week 1     | Fundamentals   |
 | 🔵 Week 2     | Beginner Rust |
-| ⬜ Week 3     | Polish CLI     |
+| ⬜ Week 3     | Midterm Project |
 | ⬜ Week 4     | Web & Async    |
 | ⬜ Week 5     | Web API Dev    |
 | ⬜ Week 6     | Deployment     |
@@ -70,12 +70,12 @@ By the end of this plan, I aim to:
 
 **Topics:**
 - Iterators, Closures
-- File handling, Error Propagation
-- Modularization and Crates
+- Cargo and Crates.io
+- Smart Pointers
 
 **Resources:**
-- Rust Book Chapters 11–13
-- Rust by Example
+- Rust Book Chapters 13-15
+- Rustlings: Chapters 18-19
 
 **Project:**
 #### ✅ Mini Project 1: Todo CLI App
