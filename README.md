@@ -52,7 +52,7 @@ By the end of this plan, I aim to:
 ### Week 2: Beginner Rust
 
 **Topics:**
-- Trait & Lifetimes
+- Generic Types, Trait & Lifetimes
 - Strings, HashMaps
 - Error handling with `Result` and `Option`
 - Automated Test
