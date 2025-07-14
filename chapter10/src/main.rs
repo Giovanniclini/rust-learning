@@ -115,6 +115,144 @@ fn main() {
     // the compiler looks at all the places where generic code is called and generates code for the concrete types the generic code is called with.
 
     // ---------------------- Traits -------------------------
+    // A trait defines the functionality a particular type has and can share with other types.
+    // We can use traits to define shared behavior in an abstract way. 
+    // IMPORTANT: We can use trait bounds to specify that a generic type can be any type that has certain behavior.
+    // cfr. interfaces
+    // Suppose we have multiple structs that hold various amount of text, we want to make a media aggregator library crate
+    //  named aggregator that can display summaries of data that might be stored in those structs.
+    pub trait Summary {
+        fn summarize(&self) -> String;
+    }
+    // Here we declared a trait using the trait keyword, we can also declare the trait as pub so that creates on this crate can 
+    // make use of this trait too.
+    // Instead of providing an implementation within curly brackets, we use semicolon.
+    // A trait can have multiple methods in its body.
+    // Following are some implementation of the Summary trait.
+    pub struct NewsArticle {
+        pub headline: String,
+        pub location: String,
+        pub author: String,
+        pub content: String,
+    }
+    // Trait implementation
+    impl Summary for NewsArticle {
+        fn summarize(&self) -> String {
+            format!("{}, by {} ({})", self.headline, self.author, self.location)
+        }
+    }
+    
+    pub struct SocialPost {
+        pub username: String,
+        pub content: String,
+        pub reply: bool,
+        pub repost: bool,
+    }
+    // Trait implementation
+    impl Summary for SocialPost {
+        fn summarize(&self) -> String {
+            format!("{}: {}", self.username, self.content)
+        }
+    }
+    // Now users of the crate can call the trait methods on instances of NewsArticle and SocialPost in the same way they call
+    // regular methods. 
+    // The only difference is that the user must bring the trait into scose as well as the types.
+    // use aggregator::{SocialPost, Summary}; // if we define the module aggregator
+    // Other crates that depend on the aggregator crate can also bring the Summary trait into scope to implement Summary on their own types. 
+    // One restriction to note is that we can implement a trait on a type only if either the trait or the type, or both, are local to our crate, i.e. they are implemented in our crate (not from external library).
+    // Sometimes it is usefull to have default behaviour for some or all of the methods in a trait.
+    pub trait SummaryDefault {
+        // Default implementation can call other methods in the same trait
+        fn summarize_author(&self) -> String;
+
+        fn summarize(&self) -> String {
+            format!("(Read more from {}...)", self.summarize_author())
+        }
+    }
+    pub struct NewsArticleDefault {
+        pub headline: String,
+        pub location: String,
+        pub author: String,
+        pub content: String,
+    }
+    // To use a default implementation to summarize instances of NewsArticle, we specify an empty impl block
+    impl SummaryDefault for NewsArticleDefault {
+        // using summarize default implemnetation
+        fn summarize_author(&self) -> String {
+            format!("@{}", self.author)
+        }
+    }
+
+    // We can still call summarize on NewsArticleDefault
+    let article = NewsArticleDefault {
+        headline: String::from("Penguins win the Stanley Cup Championship!"),
+        location: String::from("Pittsburgh, PA, USA"),
+        author: String::from("Iceburgh"),
+        content: String::from(
+            "The Pittsburgh Penguins once again are the best \
+             hockey team in the NHL.",
+        ),
+    };
+
+    println!("New article available! {}", article.summarize());
+
+    // Another important use of traits is like PARAMETERS!
+    // This function accepts any type that implements the Summary trait!!!
+    // The & is necessary becouse usually traits are implemented on struct or objects that work on self and self is a reference.
+    pub fn notify(item: &impl Summary) {
+        println!("Breaking news! {}", item.summarize());
+    }
+    // The impl Trait syntax works for straightforward cases but is actually syntax sugar for a longer form known as a trait bound; it looks like this:
+    //pub fn notify<T: Summary>(item: &T) {
+    //    println!("Breaking news! {}", item.summarize());
+    //}
+    // For example, we can have two parameters that implement Summary. Doing so with the impl Trait syntax looks like this:
+    // pub fn notify(item1: &impl Summary, item2: &impl Summary) {
+    // If we want to force both parameters to have the same type, however, we must use a trait bound, like this:
+    // pub fn notify<T: Summary>(item1: &T, item2: &T) {
+    // We can also specify more than one trait bound.
+    // pub fn notify(item: &(impl Summary + Display)) {
+    // The + syntax is also valid with trait bounds on generic types:
+    pub fn notify<T: Summary + Display>(item: &T) {
+
+    // Rust has also another syntax to defint trait bounds to avoid making the signature function hard to read
+    // when there are lots of trait bound information.
+    // This:
+    //fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
+    // Becomes:
+    //fn some_function<T, U>(t: &T, u: &U) -> i32
+    //where
+    //    T: Display + Clone,
+    //    U: Clone + Debug,
+    //{
+    // We can also use the impl Trait syntax in the return position to return a value of some type that implements a trait. See function returns_summarizable.
+
+    // Finnaly with Traits we can conditionally implement methods
+    use std::fmt::Display;
+
+    struct Pair<T> {
+        x: T,
+        y: T,
+    }
+
+    // Every Pair<T> implements new.
+    impl<T> Pair<T> {
+        fn new(x: T, y: T) -> Self {
+            Self { x, y }
+        }
+    }
+
+    // Only Pairs with T that implements Display and PartialOrd implements cmp_display!
+    impl<T: Display + PartialOrd> Pair<T> {
+        fn cmp_display(&self) {
+            if self.x >= self.y {
+                println!("The largest member is x = {}", self.x);
+            } else {
+                println!("The largest member is y = {}", self.y);
+            }
+        }
+    }
+
 }
 
 // We can use any identifier as a type parameter name but we will use T becouse
@@ -162,4 +300,18 @@ fn largest_char(list: &[char]) -> &char {
     }
 
     largest
+}
+
+// The ability to specify a return type only by the trait it implements is especially usefull in the context of closures and iterators.
+// NB: You can only use impl Trait only if you are returning a single type. You cannot return (based for example on if-else)
+// two different types that implement the same Trait.
+fn returns_summarizable() -> impl Summary {
+    SocialPost {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+        ),
+        reply: false,
+        repost: false,
+    }
 }
