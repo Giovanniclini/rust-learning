@@ -1,6 +1,6 @@
 # 🦀 My Rust Learning Journey
 
-Welcome to my Rust learning journey! This repo documents my progress through a 6-week self-study plan designed to take me from beginner to publishing real Rust projects.
+Welcome to my Rust learning journey! This repo documents my progress through a TBD-week self-study plan designed to take me from beginner to publishing real Rust projects.
 
 ---
 
@@ -9,11 +9,11 @@ Welcome to my Rust learning journey! This repo documents my progress through a 6
 | Week         | Status         |
 |--------------|----------------|
 | ✅ Week 1     | Fundamentals   |
-| 🔵 Week 2     | Beginner Rust |
-| ⬜ Week 3     | Midterm Project |
-| ⬜ Week 4     | Web & Async    |
-| ⬜ Week 5     | Web API Dev    |
-| ⬜ Week 6     | Deployment     |
+| 🔵 Week 2/3     | Beginner Rust |
+| ⬜ Week 4     | Midterm Project |
+| ⬜ Week 5     | Web & Async    |
+| ⬜ Week 6     | Web API Dev    |
+| ⬜ Week 7     | Deployment     |
 
 ---
 
@@ -49,7 +49,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 2: Beginner Rust
+### Week 2/3: Beginner Rust
 
 **Topics:**
 - Generic Types, Trait & Lifetimes
@@ -66,7 +66,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 3: Midterm Project
+### Week 4: Midterm Project
 
 **Topics:**
 - Iterators, Closures
@@ -91,7 +91,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 4: Concurrency and Web Basics
+### Week 5: Concurrency and Web Basics
 
 **Topics:**
 - Threads, `Mutex`, `Arc`, Channels
@@ -111,7 +111,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 5: Web API Development
+### Week 6: Web API Development
 
 **Tech Stack:**
 - Framework: `actix-web` or `axum`
@@ -126,7 +126,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 6: Testing, Refactoring, Deployment
+### Week 7: Testing, Refactoring, Deployment
 
 **Topics:**
 - Unit and integration testing
