@@ -213,9 +213,9 @@ fn main() {
     // We can also specify more than one trait bound.
     // pub fn notify(item: &(impl Summary + Display)) {
     // The + syntax is also valid with trait bounds on generic types:
-    pub fn notify<T: Summary + Display>(item: &T) {
+    //pub fn notify<T: Summary + Display>(item: &T) {
 
-    // Rust has also another syntax to defint trait bounds to avoid making the signature function hard to read
+    // Rust has also another syntax to define trait bounds to avoid making the signature function hard to read
     // when there are lots of trait bound information.
     // This:
     //fn some_function<T: Display + Clone, U: Clone + Debug>(t: &T, u: &U) -> i32 {
@@ -251,6 +251,150 @@ fn main() {
                 println!("The largest member is y = {}", self.y);
             }
         }
+    }
+
+    // The ability to specify a return type only by the trait it implements is especially usefull in the context of closures and iterators.
+    // NB: You can only use impl Trait only if you are returning a single type. You cannot return (based for example on if-else)
+    // two different types that implement the same Trait.
+    fn returns_summarizable() -> impl Summary {
+        SocialPost {
+            username: String::from("horse_ebooks"),
+            content: String::from(
+                "of course, as you probably already know, people",
+            ),
+            reply: false,
+            repost: false,
+        }
+    }
+
+    // ---------------------- Lifetimes -------------------------
+    // Every reference in Rust has a lifetime, that is the scope for which that reference is valid. 
+    // Most of the time, lifetimes are implicit and inferred, like most of the time, types are inferred.
+    // The main aim of lifetimes is to prevent DANGLING REFERENCES, which cause a program to reference data
+    // other than the data it's intended to reference.
+
+    // Rust do not have null values. It works, but if you try to access
+    // before assigning it a value it will give a compiler error.
+    let r;              
+
+    {
+        let x = 5;
+        r = &x;
+    }
+
+    // If we try to access r now we get an error, cause x does not live long enough, since it was defined in the inner
+    // scope and then dropped.
+    //println!("r: {r}");
+    // To determine that a piece of code is valid, Rust uses a borrow checker!
+    //fn longest(x: &str, y: &str) -> &str {
+    //    if x.len() > y.len() { x } else { y }
+    //}
+    
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    //let result = longest(string1.as_str(), string2);
+    //println!("The longest string is {result}");
+    // This will return an error:
+    // = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `x` or `y`
+    // help: consider introducing a named lifetime parameter
+    // We don't know if the if or the else branch will be executed so we cannot tell if the reference the function
+    // will return will be always valid!!
+    // In this case we need to define a generic lifetime parameters that define the relationship between the 
+    // references so the borrow checker can perform its analysis.
+    // Lifetime annotations don’t change how long any of the references live. Rather, they describe the relationships of the lifetimes of multiple references to each other without affecting the lifetimes. 
+    // Lifetime annotations have a slightly unusual syntax: the names of lifetime parameters must start with an apostrophe (') and are usually all lowercase and very short, like generic types. 
+    // Most people use the name 'a for the first lifetime annotation.
+    //&i32        // a reference
+    //&'a i32     // a reference with an explicit lifetime
+    //&'a mut i32 // a mutable reference with an explicit lifetime
+
+    // Lifetime Annotations in Function Signatures
+    // To use lifetime annotations in function signatures, we need to declare the generic lifetime parameters inside angle brackets between the function name and the parameter list, just as we did with generic type parameters.
+    // The function signature now tells Rust that for some lifetime 'a, the function takes two parameters, both of which are string slices that live at least as long as lifetime 'a.
+    // The function signature also tells Rust that the string slice returned from the function will live at least as long as lifetime 'a. 
+    // In practice, it means that the lifetime of the reference returned by the longest function is the same as the smaller of the lifetimes of the values referred to by the function arguments. 
+    // These relationships are what we want Rust to use when analyzing this code.
+    // When we pass concrete references to longest, the concrete lifetime that is substituted for 'a is the part of the scope of x that overlaps with the scope of y. 
+    // In other words, the generic lifetime 'a will get the concrete lifetime that is equal to the smaller of the lifetimes of x and y. 
+    // Because we’ve annotated the returned reference with the same lifetime parameter 'a, the returned reference will also be valid for the length of the smaller of the lifetimes of x and y.
+    fn longest_with_lifetimes<'a>(x: &'a str, y: &'a str) -> &'a str {
+        if x.len() > y.len() { x } else { y }
+    }
+    // Example:
+    //let string1 = String::from("long string is long");
+    //let result;
+    //{
+    //    let string2 = String::from("xyz");
+    //    result = longest_with_lifetimes(string1.as_str(), string2.as_str());
+    //}
+    //println!("The longest string is {result}");
+    // We have that:
+    //'a = min(lifetime of string1, lifetime of string2)
+    // Becouse result will have the minimum lifetime between string1 and string2
+    // That means: result is a reference that cannot outlive string2, But you try to use result after string2 is already dropped.
+    // The compile will generate an error!
+
+    //The way in which you need to specify lifetime parameters depends on what your function is doing.
+    // Ultimately, lifetime syntax is about connecting the lifetimes of various parameters and return values of functions. 
+    // Once they’re connected, Rust has enough information to allow memory-safe operations and disallow operations that would create dangling pointers or otherwise violate memory safety.
+
+    // We always seen struct holding owned types. Struct can also hold references, but in that case we need to specify a lifetime.
+    // This means an instance of ImportantExcerpt cannot outlive the reference it holds in its part field.
+    struct ImportantExcerpt<'a> {
+        part: &'a str,
+    }
+
+    let novel = String::from("Call me Ishmael. Some years ago...");
+    let first_sentence = novel.split('.').next().unwrap();
+    let i = ImportantExcerpt {
+        part: first_sentence,
+    };
+
+    // An important concept are LIFETIME ELISIONS.
+    // IMPORTANT: All functions that use references may need explicit lifetime parameters, unless the compiler can apply the lifetime elision rules to infer them.
+    // Lifetimes on function or method parameters are called input lifetimes, and lifetimes on return values are called output lifetimes.
+    // The reason there are elision rules is historic and due to the fact that programmers were repeating over and over the same lifetime annotations.
+    // There are 3 main elision rules and If the compiler gets to the end of the three rules and there are still references for which it can’t figure out lifetimes, the compiler will stop with an error.
+    // 1. The compiler assigns a lifetime parameter to each parameter that’s a reference.
+    //    In other words, a function with one parameter gets one lifetime parameter: fn foo<'a>(x: &'a i32); 
+    //    a function with two parameters gets two separate lifetime parameters: fn foo<'a, 'b>(x: &'a i32, y: &'b i32); and so on.
+    // 2. If there is exactly one input lifetime parameter, that lifetime is assigned to all output lifetime parameters: fn foo<'a>(x: &'a i32) -> &'a i32.
+    // 3. If there are multiple input lifetime parameters, but one of them is &self or &mut self because this is a method, the lifetime of self is assigned to all output lifetime parameters. 
+    // Example:
+    // fn longest(x: &str, y: &str) -> &str {
+    // First rule: the compile assign a lifetime parameter to each parameter that's a reference.
+    // fn longest<'a, 'b>(x: &'a str, y: &'b str) -> &str {
+    // Second rule: do not apply, since we have two parameters.
+    // Third rule: do not apply, we do not have &self as parameter.
+    // The compiler will return an error since it cannot infer lifetime parameters to all reference parameters!
+
+    // Lifetimes in methods
+    // Here the third rule applies.
+    // We always have to specify the lifetime if our struct has a reference as a field.
+    impl<'a> ImportantExcerpt<'a> {
+        fn announce_and_return_part(&self, announcement: &str) -> &str {
+            println!("Attention please: {announcement}");
+            self.part
+        }
+    }
+
+    // Static lifetime
+    // All string literals are annotated by the static lifetimes
+    // It denotes that the affected reference can live for the entire duration of the program.
+    let s: &'static str = "I have a static lifetime.";
+
+    // To summarize, we have the longest function with all the concepts of this chapter summarized:
+    fn longest_with_an_announcement<'a, T>(
+        x: &'a str,
+        y: &'a str,
+        ann: T,
+    ) -> &'a str
+    where
+        T: Display,
+    {
+        println!("Announcement! {ann}");
+        if x.len() > y.len() { x } else { y }
     }
 
 }
@@ -302,16 +446,4 @@ fn largest_char(list: &[char]) -> &char {
     largest
 }
 
-// The ability to specify a return type only by the trait it implements is especially usefull in the context of closures and iterators.
-// NB: You can only use impl Trait only if you are returning a single type. You cannot return (based for example on if-else)
-// two different types that implement the same Trait.
-fn returns_summarizable() -> impl Summary {
-    SocialPost {
-        username: String::from("horse_ebooks"),
-        content: String::from(
-            "of course, as you probably already know, people",
-        ),
-        reply: false,
-        repost: false,
-    }
-}
+
