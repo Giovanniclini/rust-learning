@@ -59,7 +59,7 @@ By the end of this plan, I aim to:
 
 **Resources:**
 - Rust Book Chapters 7,8.2,8.3,9–11
-- Rustlings: Chapters 9-17, Quiz 2
+- Rustlings: Chapters 9-17, Quiz 2, Quiz 3
 
 **Tasks:**
 - Commit daily notes and solutions
