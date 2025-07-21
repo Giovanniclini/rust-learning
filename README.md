@@ -145,7 +145,7 @@ By the end of this plan, I aim to:
 
 | Project               | Description                    | Link                |
 |-----------------------|--------------------------------|---------------------|
-| `todo-cli-rust`       | Command-line todo manager      | 🚧 In Progress      |
+| `bgscore-cli`       | Command-line Board game scores manager      | 🚧 In Progress      |
 | `rust-pastebin-api`   | Pastebin-like web API backend  | 🚧 In Progress      |
 
 ---
