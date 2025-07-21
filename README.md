@@ -86,7 +86,7 @@ By the end of this plan, I aim to:
 - Commit daily notes and solutions
 - Start the project Score CLI App
 - Add tests and logging
-- ✅ Push to GitHub: `bgscore-cli`
+- ✅ Push to GitHub: `score-cli`
 
 ---
 
@@ -145,7 +145,7 @@ By the end of this plan, I aim to:
 
 | Project               | Description                    | Link                |
 |-----------------------|--------------------------------|---------------------|
-| `bgscore-cli`       | Command-line Board game scores manager      | 🚧 In Progress      |
+| `score-cli`       | Command-line Board game scores manager      | 🚧 In Progress      |
 | `rust-pastebin-api`   | Pastebin-like web API backend  | 🚧 In Progress      |
 
 ---
