@@ -23,7 +23,7 @@ Welcome to my Rust learning journey! This repo documents my progress through a T
 By the end of this plan, I aim to:
 - Understand core Rust concepts
 - Build and publish two complete projects:
-  1. A **Todo CLI**
+  1. A **Score CLI**
   2. A **Pastebin Web API**
 - Learn how to test, document, and deploy Rust code
 
@@ -78,16 +78,15 @@ By the end of this plan, I aim to:
 - Rustlings: Chapters 18-19
 
 **Project:**
-#### ✅ Mini Project 1: Todo CLI App
-- Features: Add/remove/list tasks
-- Store tasks in a JSON file
-- Crates: `clap`, `serde`, `serde_json`
+#### ✅ Mini Project 1: Score CLI App
+- Features: Add/remove/list game
+- Store games in a JSON file
 
 **Tasks:**
 - Commit daily notes and solutions
-- Start the project Todo CLI App
+- Start the project Score CLI App
 - Add tests and logging
-- ✅ Push to GitHub: `todo-cli-rust`
+- ✅ Push to GitHub: `bgscore-cli`
 
 ---
 
