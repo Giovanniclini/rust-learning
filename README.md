@@ -145,7 +145,7 @@ By the end of this plan, I aim to:
 
 | Project               | Description                    | Link                |
 |-----------------------|--------------------------------|---------------------|
-| `score-cli`       | Command-line Board game scores manager      | 🚧 In Progress      |
+| `score-cli`       | Command-line Board game scores manager      | [score-cli](https://github.com/Giovanniclini/score-cli)     |
 | `rust-pastebin-api`   | Pastebin-like web API backend  | 🚧 In Progress      |
 
 ---
