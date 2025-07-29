@@ -10,10 +10,10 @@ Welcome to my Rust learning journey! This repo documents my progress through a T
 |--------------|----------------|
 | ✅ Week 1     | Fundamentals   |
 | ✅ Week 2/3     | Beginner Rust |
-| 🔵 Week 4     | Midterm Project |
-| ⬜ Week 5     | Web & Async    |
-| ⬜ Week 6     | Web API Dev    |
-| ⬜ Week 7     | Deployment     |
+| 🔵 Week 4/5/6     | Midterm Project |
+| ⬜ Week 7     | Web & Async    |
+| ⬜ Week 8     | Web API Dev    |
+| ⬜ Week 9     | Deployment     |
 
 ---
 
@@ -66,7 +66,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 4: Midterm Project
+### Week 4/5/6: Midterm Project
 
 **Topics:**
 - Iterators, Closures
@@ -90,7 +90,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 5: Concurrency and Web Basics
+### Week 7: Concurrency and Web Basics
 
 **Topics:**
 - Threads, `Mutex`, `Arc`, Channels
@@ -110,7 +110,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 6: Web API Development
+### Week 8: Web API Development
 
 **Tech Stack:**
 - Framework: `actix-web` or `axum`
@@ -125,7 +125,7 @@ By the end of this plan, I aim to:
 
 ---
 
-### Week 7: Testing, Refactoring, Deployment
+### Week 9: Testing, Refactoring, Deployment
 
 **Topics:**
 - Unit and integration testing
