@@ -8,9 +8,9 @@ Welcome to my Rust learning journey! This repo documents my progress through a T
 
 | Week         | Status         |
 |--------------|----------------|
-| ✅ Week 1     | Fundamentals   |
-| ✅ Week 2/3     | Beginner Rust |
-| 🔵 Week 4/5/6     | Midterm Project |
+| ✅ Week 1     | Fundamentals  |
+| ✅ Week 2/3   | Beginner Rust |
+| ✅ Week 4/5/6 | Midterm Project |
 | ⬜ Week 7     | Web & Async    |
 | ⬜ Week 8     | Web API Dev    |
 | ⬜ Week 9     | Deployment     |
